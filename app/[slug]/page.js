@@ -23,20 +23,6 @@ async function getData() {
     return res.json()
   }
 
-function waktu() {
-    const awal = new Date("2023-10-04 17:20:00")
-    const akhir = new Date("2023-10-04 22:05:00")
-    // console.log(Date.parse(awal.getTime()))
-    const diff = (akhir - awal) / 60000; //dividing by seconds and milliseconds
-
-    const minutes = diff % 60;
-    const hours = (diff - minutes) / 60;
-
-    console.log(`${hours} : ${minutes}`)
-
-    // console.log(format.toLocaleTimeString())
-}
-
 export default async function Page({params}) {
     const data = await getData()
     // console.log(data.data)
@@ -52,7 +38,7 @@ export default async function Page({params}) {
                         <h1 className="text-white text-2xl font-semibold">Ngurah Rai (DPS)</h1>
                     </div>
                 </div>
-                <div className="w-80 bg-white rounded-2xl mx-8 absolute top-36 p-4">
+                <div className="w-80 bg-white rounded-2xl mx-6 absolute top-36 p-4">
                     <h2 className="text-slate-800 text-base font-semibold mb-4">Flight Menu</h2>
                     <form className="flex flex-col">
                         <Select name="origin">
@@ -76,7 +62,7 @@ export default async function Page({params}) {
                         <button type="submit" className="w-72 h-10 bg-violet-300 rounded-lg text-slate-800 text-base font-semibold">Search</button>
                     </form>
                 </div>
-                <div className="mx-8 mt-52 ">
+                <div className="mx-6 mt-52 ">
                     <div className="flex flex-col gap-y-6">
                         <span className="text-slate-800 text-lg text-center font-semibold">Upcoming Flights</span>
                         <div className="relative">
