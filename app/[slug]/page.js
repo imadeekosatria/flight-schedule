@@ -9,9 +9,11 @@ import {
   } from "@/components/ui/select"
 import Cardflight from "@/components/cardFlight"
 
+
+
 async function getData() {
     const url = 'https://bali-airport.com/data-airline/dept/domestic'
-    const res = await fetch(url)
+    const res = await fetch(url, {cache: 'no-store'})
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
     
@@ -25,44 +27,48 @@ async function getData() {
 
 export default async function Page({params}) {
     const data = await getData()
-    // console.log(data.data)
-    // waktu()
+    
     return (
         <>
-            <div>
+            <div className="w-full">
                 <div className="w-full relative">
                     <div className="relative">
                         <Image src={bgBali} className="w-full h-48" style={{objectFit: 'cover'}}/>
                     </div>
-                    <div className="absolute top-0 w-48 mx-8 h-full flex items-center">
-                        <h1 className="text-white text-2xl font-semibold">Ngurah Rai (DPS)</h1>
+                    <div className="absolute top-0 w-full h-full">
+                        <div className="w-80 h-full flex flex-col justify-center mx-auto">
+                            <h1 className="w-48 text-white text-2xl font-semibold">Ngurah Rai (DPS)</h1>
+                        </div>
                     </div>
                 </div>
-                <div className="w-80 bg-white rounded-2xl mx-6 absolute top-36 p-4">
-                    <h2 className="text-slate-800 text-base font-semibold mb-4">Flight Menu</h2>
-                    <form className="flex flex-col">
-                        <Select name="origin">
-                            <SelectTrigger className="w-72 mb-4">
-                                <SelectValue placeholder="Select a flight"/>
-                            </SelectTrigger>
-                            <SelectContent>
-                            <SelectItem value="domestic">Domestic</SelectItem>
-                            <SelectItem value="internasional">International</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <Select name="terminal">
-                            <SelectTrigger className="w-72 mb-4">
-                                <SelectValue placeholder="Select terminal"/>
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="arrival">Arrival</SelectItem>
-                                <SelectItem value="departure">Departure</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <button type="submit" className="w-72 h-10 bg-violet-300 rounded-lg text-slate-800 text-base font-semibold">Search</button>
-                    </form>
+                <div className="flex flex-col items-center">
+                    <div className="w-80 bg-white rounded-2xl mx-4 absolute top-36 p-4">
+                        <h2 className="text-slate-800 text-base font-semibold mb-4">Flight Menu</h2>
+                        <form className="flex flex-col">
+                            <Select name="origin">
+                                <SelectTrigger className="w-72 mb-4">
+                                    <SelectValue placeholder="Select a flight"/>
+                                </SelectTrigger>
+                                <SelectContent>
+                                <SelectItem value="domestic">Domestic</SelectItem>
+                                <SelectItem value="internasional">International</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <Select name="terminal">
+                                <SelectTrigger className="w-72 mb-4">
+                                    <SelectValue placeholder="Select terminal"/>
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="arrival">Arrival</SelectItem>
+                                    <SelectItem value="departure">Departure</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <button type="submit" className="w-72 h-10 bg-violet-300 rounded-lg text-slate-800 text-base font-semibold">Search</button>
+                        </form>
+                    </div>
+                
                 </div>
-                <div className="mx-6 mt-52 ">
+                <div className="flex flex-col items-center mt-52 ">
                     <div className="flex flex-col gap-y-6">
                         <span className="text-slate-800 text-lg text-center font-semibold">Upcoming Flights</span>
                         <div className="relative">
@@ -76,7 +82,7 @@ export default async function Page({params}) {
                     </div>
                     {data.data.map((flightstat) =>(
                         // console.log(aircraft)
-                        <Cardflight props={flightstat}/>
+                        <Cardflight key={flightstat.flightno} props={flightstat}/>
                     ))}
                 </div>
             </div>

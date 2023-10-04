@@ -1,7 +1,16 @@
 import Image from "next/image"
 import QZ from "../public/images/aircraft/QZ.png"
-import Plane from "./planeSvg"
+import ID from "../public/images/aircraft/ID.png"
+import GA from "../public/images/aircraft/GA.png"
+import IU from "../public/images/aircraft/IU.png"
+import QG from "../public/images/aircraft/QG.png"
+import TR from "../public/images/aircraft/8B.png"
+import JT from "../public/images/aircraft/JT.png"
+import IW from "../public/images/aircraft/IW.png"
+import SJ from "../public/images/aircraft/SJ.png"
 
+
+import Plane from "./planeSvg"
 
 function Status(stat) {
     const red = ['LATE ARRIVAL', 'GATE CLOSE', 'LAST CALL', 'BOARDING', 'DEPARTED']
@@ -33,6 +42,9 @@ function waktu(schedule, estimate) {
 
         const minutes = diff % 60;
         const hours = (diff - minutes) / 60;
+        if (minutes < 10) {
+            return `${hours} h 0${minutes} min`
+        }
 
         return `${hours} h ${minutes} min`
     }
@@ -43,8 +55,57 @@ function Jam(props) {
     // const jam = new Date(props.props.schedule)
     // return jam.
     const time = new Date(props)
-    return `${time.getHours()} : ${time.getMinutes()}`
+
+    return time.toLocaleTimeString('en-GB', {hour: "2-digit", minute: "2-digit"})
 }
+
+const idFlight = [
+    {
+        id: "QZ", 
+        logo: QZ
+    }, 
+    {
+        id:"ID",
+        logo: ID
+    }, 
+    {
+        id: "GA",
+        logo: GA
+    }, 
+    {
+        id: "IU",
+        logo: IU
+    }, 
+    {
+        id: "QG",
+        logo: QG
+    },
+    {
+        id:"8B",
+        logo: TR
+    },
+    {
+        id:"JT",
+        logo: JT
+    },
+    {
+        id:"IW",
+        logo: IW
+    },
+    {
+        id:"SJ",
+        logo: SJ
+    }
+]
+function logo(id) {
+    for (const x of idFlight) {
+        if (x.id == id) {
+            return x.logo
+        }
+    }
+    
+}
+
 
 export default function Cardflight(props) {
     // waktu(props)
@@ -53,7 +114,7 @@ export default function Cardflight(props) {
             <div className="w-80 relative bg-white rounded-2xl shadow mt-9 p-4">
                 <div className="flex justify-between">
                     <div className="flex gap-x-2 items-center">
-                        <Image src={QZ} className="w-12 h-5"/>
+                        <Image src={logo(props.props.operator)} className="w-12 h-5"/>
                         <span className="text-slate-800 text-xl font-semibold">{props.props.flightno}</span>    
                     </div>
                     <div className="flex items-center">
