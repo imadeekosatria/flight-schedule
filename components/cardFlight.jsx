@@ -145,8 +145,8 @@ export default function Cardflight(props) {
                     </div>
                 </div>
                 <div className="flex justify-between mb-2">
-                    <span className="text-indigo-400 text-xs font-medium">{props.props.airportloc}</span>
-                    <span className="text-indigo-400 text-xs font-medium">{props.props.fromtolocation}</span>
+                    <span className="text-indigo-400 text-xs font-medium text-left max-sm:w-24">{props.props.airportloc}</span>
+                    <span className="text-indigo-400 text-xs font-medium text-right max-sm:w-24">{props.props.fromtolocation}</span>
                 </div>
                 <div className="grid grid-rows-2 w-10/12 ml-auto gap-y-2">
                     <div className="grid grid-cols-7 items-center gap-x-2">
