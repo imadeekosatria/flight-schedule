@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 import {
   Select,
   SelectContent,
@@ -9,9 +9,25 @@ import {
 import Link from "next/link"
 import Footer from "@/components/footer"
 import submit from "./action"
+// import { useState, useEffect } from "react"
+import { collection, query, getDocs, querySnapshot, onSnapshot} from "firebase/firestore"
+import { db } from "./firebase"
 
+async function getBandara() {
+  let bandaras = []
+    const querySnapshot = await getDocs(collection(db, "bandara"));
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    // console.log(doc.id, " => ", doc.data());
+    bandaras.push({...doc.data(), id: doc.id});
+  });
+  return bandaras
+}
 
-export default function Home() {
+export default async function Home() {
+  const data = await getBandara()
+  
+  // console.log(data)  
   return (
     <>
     <div className="flex flex-col justify-between h-screen">
@@ -33,9 +49,11 @@ export default function Home() {
                   <SelectValue placeholder="From"/>
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="CGK">Jakarta (CKG)</SelectItem>
+                  {/* {data.map((bandara)=>{
+                    <SelectItem value={bandara.code}>{bandara.name}</SelectItem>
+                  })} */}
                   <SelectItem value="DPS">Denpasar (DPS)</SelectItem>
-                  <SelectItem value="HAL">Surabaya (HAL)</SelectItem>
+                  <SelectItem value="SUB">Surabaya (SUB)</SelectItem>
                 </SelectContent>
               </Select>
               <button type="submit" className="mt-4 w-72 h-10 bg-violet-300 rounded-lg text-slate-800 text-base font-semibold">Search</button>

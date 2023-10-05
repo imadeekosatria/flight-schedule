@@ -1,7 +1,7 @@
 export default function Plane() {
     return(
         <>
-            <div className="col-span-3">
+            <div className="col-span-3 flex flex-col items-center">
                 <svg width="174" height="32" viewBox="0 0 174 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <line x1="4" y1="16.5" x2="169" y2="16.5" stroke="#BDBDBD"/>
                     <circle cx="87" cy="16" r="15.5" fill="white" stroke="#BDBDBD"/>

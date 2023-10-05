@@ -11,7 +11,23 @@ import Cardflight from "@/components/cardFlight"
 
 
 
-async function getData() {
+const bandara = [
+    {
+        id:"DPS",
+        name: "Ngurah Rai",
+        origin: "Denpasar, Bali",
+        url: "https://bali-airport.com/data-airline/"
+    },
+    {
+        id:"SUB",
+        url: "https://juanda-airport.com/data-airline/"
+    },
+    {
+        id:"LOP",
+        url: "https://lombok-airport.co.id/data-airline/"
+    },
+]
+async function getData(slug) {
     const url = 'https://bali-airport.com/data-airline/dept/domestic'
     const res = await fetch(url, {cache: 'no-store'})
     // The return value is *not* serialized
@@ -26,8 +42,8 @@ async function getData() {
   }
 
 export default async function Page({params}) {
-    const data = await getData()
-    
+    const data = await getData(params.slug)
+    // console.log(params.slug)
     return (
         <>
             <div className="w-full">
@@ -68,8 +84,8 @@ export default async function Page({params}) {
                     </div>
                 
                 </div>
-                <div className="flex flex-col items-center mt-52 ">
-                    <div className="flex flex-col gap-y-6">
+                <div className="flex flex-col max-sm:items-center mt-52 ">
+                    <div className="flex flex-col gap-y-6 items-center">
                         <span className="text-slate-800 text-lg text-center font-semibold">Upcoming Flights</span>
                         <div className="relative">
                             <form>
@@ -80,10 +96,12 @@ export default async function Page({params}) {
                             </form>
                         </div>
                     </div>
-                    {data.data.map((flightstat) =>(
-                        // console.log(aircraft)
-                        <Cardflight key={flightstat.flightno} props={flightstat}/>
-                    ))}
+                    <div className="flex flex-wrap gap-4 justify-center">
+                        {data.data.map((flightstat) =>(
+                            // console.log(aircraft)
+                            <Cardflight key={flightstat.flightno} props={flightstat}/>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>
