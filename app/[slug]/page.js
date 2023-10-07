@@ -1,3 +1,7 @@
+
+import { collection, getDocs, doc, where, query, limit} from "firebase/firestore"
+// import { useState, useEffect} from "react"
+import { db } from "../firebase"
 import Image from "next/image"
 import bgBali from "../../public/images/pexels-aron-visuals-1643130.jpg"
 import {
@@ -9,26 +13,9 @@ import {
   } from "@/components/ui/select"
 import Cardflight from "@/components/cardFlight"
 
-
-
-const bandara = [
-    {
-        id:"DPS",
-        name: "Ngurah Rai",
-        origin: "Denpasar, Bali",
-        url: "https://bali-airport.com/data-airline/"
-    },
-    {
-        id:"SUB",
-        url: "https://juanda-airport.com/data-airline/"
-    },
-    {
-        id:"LOP",
-        url: "https://lombok-airport.co.id/data-airline/"
-    },
-]
 async function getData(slug) {
-    const url = 'https://bali-airport.com/data-airline/dept/domestic'
+    // console.log(bandara)
+    const url = slug
     const res = await fetch(url, {cache: 'no-store'})
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
@@ -39,17 +26,32 @@ async function getData(slug) {
     }
     
     return res.json()
-  }
+}
 
-export default async function Page({params}) {
-    const data = await getData(params.slug)
-    // console.log(params.slug)
+async function getBandara(slug) {
+    const col = collection(db, "bandara")
+    const q = query(col, where("code", "==", slug), limit(1))
+    const querySnapshot = getDocs(q)
+    const data = await querySnapshot.then((snapshot)=>{
+        let burl = {}
+        snapshot.docs.forEach((doc)=>{
+            burl = doc.data()
+        })
+        return burl
+    })
+    return data
+}
+export default async function Page(params) {
+    // console.log(params.params.slug)
+    const bandaradata = await getBandara(params.params.slug)
+    const data = await getData(bandaradata.url)
+    console.log(bandaradata)
     return (
-        <>
+        <> 
             <div className="w-full">
                 <div className="w-full relative">
                     <div className="relative">
-                        <Image src={bgBali} className="w-full h-48" style={{objectFit: 'cover'}}/>
+                        <Image src={bgBali} className="w-full h-48" style={{objectFit: 'cover'}} alt={bandaradata.origin}/>
                     </div>
                     <div className="absolute top-0 w-full h-full">
                         <div className="w-80 h-full flex flex-col justify-center mx-auto">
@@ -61,7 +63,7 @@ export default async function Page({params}) {
                     <div className="w-80 bg-white rounded-2xl mx-4 absolute top-36 p-4">
                         <h2 className="text-slate-800 text-base font-semibold mb-4">Flight Menu</h2>
                         <form className="flex flex-col">
-                            <Select name="origin">
+                            <Select name="origin" value="domestic">
                                 <SelectTrigger className="w-72 mb-4">
                                     <SelectValue placeholder="Select a flight"/>
                                 </SelectTrigger>
@@ -70,7 +72,7 @@ export default async function Page({params}) {
                                 <SelectItem value="internasional">International</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <Select name="terminal">
+                            <Select name="terminal" value="departure">
                                 <SelectTrigger className="w-72 mb-4">
                                     <SelectValue placeholder="Select terminal"/>
                                 </SelectTrigger>

@@ -123,7 +123,7 @@ export default function Cardflight(props) {
             <div className="w-80 md:w-96 relative bg-white rounded-2xl shadow mt-9 p-4">
                 <div className="flex justify-between">
                     <div className="flex gap-x-2 items-center">
-                        <Image src={logo(props.props.operator)} className="object-cover w-12 h-5"/>
+                        <Image src={logo(props.props.operator)} className="object-cover w-12 h-5" alt={props.props.operator}/>
                         <span className="text-slate-800 text-xl font-semibold">{props.props.flightno}</span>    
                     </div>
                     <div className="flex items-center">
@@ -152,7 +152,7 @@ export default function Cardflight(props) {
                     <div className="grid grid-cols-7 items-center gap-x-2">
                         <span className="col-span-2 text-left">Gate</span>
                         <span className="text-center">:</span>
-                        <span className="col-span-4 w-11 text-center px-2 py-1 bg-blue-500 rounded-3xl text-white text-xs font-medium ml-auto">{props.props.gatenumber}</span>
+                        <span className="col-span-4 w-11 text-center px-2 py-1 bg-blue-500 rounded-3xl text-white text-xs font-medium ml-auto">{props.props.gatenumber? props.props.gatenumber : "-"}</span>
                     </div>
                     <div className="grid grid-cols-7 items-center gap-x-2">
                         <span className="col-span-2 text-left">Status</span>

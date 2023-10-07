@@ -1,4 +1,4 @@
-// "use client"
+"use client"
 import {
   Select,
   SelectContent,
@@ -8,26 +8,27 @@ import {
 } from "@/components/ui/select"
 import Link from "next/link"
 import Footer from "@/components/footer"
+import CardFlightHome from "@/components/cardFlightHome"
 import submit from "./action"
-// import { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { collection, query, getDocs, querySnapshot, onSnapshot} from "firebase/firestore"
 import { db } from "./firebase"
 
-async function getBandara() {
-  let bandaras = []
-    const querySnapshot = await getDocs(collection(db, "bandara"));
-  querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    // console.log(doc.id, " => ", doc.data());
-    bandaras.push({...doc.data(), id: doc.id});
-  });
-  return bandaras
-}
 
-export default async function Home() {
-  const data = await getBandara()
-  
-  // console.log(data)  
+export default function Home() {
+  const [newBandara, setnewBandara] = useState([{}])
+  useEffect(()=>{
+    getDocs(collection(db, "bandara"))
+    .then((snapshot)=>{
+      let bandaras = []
+      snapshot.docs.forEach((doc)=>{
+        bandaras.push({...doc.data(), id: doc.id})
+      })
+      setnewBandara(bandaras)
+    })
+
+  },[])
+  // console.log(newBandara)
   return (
     <>
     <div className="flex flex-col justify-between h-screen">
@@ -49,11 +50,9 @@ export default async function Home() {
                   <SelectValue placeholder="From"/>
                 </SelectTrigger>
                 <SelectContent>
-                  {/* {data.map((bandara)=>{
-                    <SelectItem value={bandara.code}>{bandara.name}</SelectItem>
-                  })} */}
-                  <SelectItem value="DPS">Denpasar (DPS)</SelectItem>
-                  <SelectItem value="SUB">Surabaya (SUB)</SelectItem>
+                  {newBandara.map((bandara)=>{
+                    return <SelectItem key={bandara.code} value={bandara.code}>{bandara.name}</SelectItem>
+                  })}
                 </SelectContent>
               </Select>
               <button type="submit" className="mt-4 w-72 h-10 bg-violet-300 rounded-lg text-slate-800 text-base font-semibold">Search</button>
@@ -65,43 +64,9 @@ export default async function Home() {
             <span className="text-slate-800 text-sm font-semibold">Upcoming flight</span>
             <Link href={"#"} className="flex items-center text-indigo-400 text-sm font-semibold">See All <box-icon name='chevron-right' color='#7088f1' ></box-icon></Link>
           </div>
-          <div className="p-3 w-80 relative bg-white rounded-2xl shadow">
-            <div className="flex justify-between">
-              <h2 className="text-slate-800 text-xl font-semibold">Soekarno-Hatta</h2>
-              <div className="flex items-center mb-6">
-                <box-icon type='solid' color='#7088f1' name='watch'></box-icon>
-                <span className="text-indigo-400 text-xs font-medium">1 h 30 min</span>
-              </div>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-slate-800 text-xs font-normal">08:00</span>
-              <span className="text-slate-800 text-xs font-normal">09:00</span>
-            </div>
-            <div className="grid grid-cols-5 mb-2">
-              <div className="flex flex-col text-left">
-                <span className="text-slate-800 text-lg font-semibold">JKT</span>
-                <span className="text-indigo-400 text-xs font-medium">Jakarta</span>
-              </div>
-              <div className="col-span-3">
-                <svg width="174" height="32" viewBox="0 0 174 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <line x1="4" y1="16.5" x2="169" y2="16.5" stroke="#BDBDBD"/>
-                  <circle cx="87" cy="16" r="15.5" fill="white" stroke="#BDBDBD"/>
-                  <path d="M82.1562 26.265H84.1711L90.8855 17.759H95.1385C96.3123 17.759 97.265 16.8063 97.265 15.6325C97.265 14.4587 96.3123 13.506 95.1385 13.506H90.7738L84.0594 5H82.1573L85.145 13.506L80.253 13.506L78.1265 10.3162H76L78.1265 15.6325L76 20.9487H78.1265L80.253 17.759H85.2343L82.1562 26.265Z" fill="#4F4F4F"/>
-                  <circle cx="2.5" cy="16.5" r="2.5" fill="#D9D9D9"/>
-                  <circle cx="171.5" cy="16.5" r="2.5" fill="#D9D9D9"/>
-                </svg>
-              </div>
-              <div className="flex flex-col text-right">
-                <span className="text-slate-800 text-lg font-semibold">SBY</span>
-                <span className="text-indigo-400 text-xs font-medium">Surabaya</span>
-              </div>
-            </div>
-            <div className="text-right w-full">
-              <span className="mr-4 text-black text-xs font-medium">Status &ensp; :</span>
-              <span className="px-2 py-0.5 bg-rose-500 rounded-lg text-white text-xs font-medium ">Boarding</span>
-            </div>
-          </div>
-
+          {newBandara.map((bandara)=>{
+            return <CardFlightHome key={bandara.id} props={bandara}/>
+          })}
         </div>
       </div>
       <Footer></Footer>
