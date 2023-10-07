@@ -4,14 +4,143 @@ import ID from "../public/images/aircraft/ID.png"
 import GA from "../public/images/aircraft/GA.png"
 import IU from "../public/images/aircraft/IU.png"
 import QG from "../public/images/aircraft/QG.png"
-import TR from "../public/images/aircraft/8B.png"
+import TB from "../public/images/aircraft/8B.png"
 import JT from "../public/images/aircraft/JT.png"
 import IW from "../public/images/aircraft/IW.png"
 import SJ from "../public/images/aircraft/SJ.png"
 import IP from "../public/images/aircraft/IP.png"
-
-
+import JQ from "../public/images/aircraft/JQ.png"
+import FD from "../public/images/aircraft/FD.png"
+import OD from "../public/images/aircraft/OD.png"
+import SQ from "../public/images/aircraft/SQ.png"
+import MH from "../public/images/aircraft/MH.png"
+import VJ from "../public/images/aircraft/VJ.png"
+import TR from "../public/images/aircraft/TR.png"
+import VA from "../public/images/aircraft/VA.png"
+import CI from "../public/images/aircraft/CI.png"
+import CX from "../public/images/aircraft/CX.png"
+import BR from "../public/images/aircraft/BR.png"
+import TG from "../public/images/aircraft/TG.png"
+import QR from "../public/images/aircraft/QR.png"
+import EK from "../public/images/aircraft/EK.png"
+import QF from "../public/images/aircraft/QF.png"
 import Plane from "./planeSvg"
+
+const idFlight = [
+    {
+        id:"QF",
+        logo: QF
+    },
+    {
+        id:"EK",
+        logo: EK
+    },
+    {
+        id:"QR",
+        logo: QR
+    },
+    {
+        id:"TG",
+        logo: TG
+    },
+    {
+        id:"BR",
+        logo: BR
+    },
+    {
+        id: "QZ", 
+        logo: QZ
+    }, 
+    {
+        id:"ID",
+        logo: ID
+    }, 
+    {
+        id: "GA",
+        logo: GA
+    }, 
+    {
+        id: "IU",
+        logo: IU
+    }, 
+    {
+        id: "QG",
+        logo: QG
+    },
+    {
+        id:"8B",
+        logo: TB
+    },
+    {
+        id:"JT",
+        logo: JT
+    },
+    {
+        id:"IW",
+        logo: IW
+    },
+    {
+        id:"SJ",
+        logo: SJ
+    },
+    {
+        id:"IP",
+        logo: IP
+    },
+    {
+        id:"JQ",
+        logo: JQ
+    },
+    {
+        id:"3K",
+        logo: JQ
+    },
+    {
+        id:"FD",
+        logo: FD
+    },
+    {
+        id:"OD",
+        logo: OD
+    },
+    {
+        id:"SQ",
+        logo: SQ
+    },
+    {
+        id:"MH",
+        logo: MH
+    },
+    {
+        id:"VJ",
+        logo: VJ
+    },
+    {
+        id:"TR",
+        logo: TR
+    },
+    {
+        id:"AK",
+        logo: QZ
+    },
+    {
+        id:"VA",
+        logo: VA
+    },
+    {
+        id:"D7",
+        logo: QZ
+    },
+    {
+        id:"CI",
+        logo: CI
+    },
+    {
+        id:"CX",
+        logo: CX
+    },
+]
+
 
 function Status(stat) {
     const red = ['LATE ARRIVAL', 'GATE CLOSE', 'LAST CALL', 'BOARDING', 'DEPARTED', 'CHECK IN CLOSE']
@@ -64,48 +193,7 @@ function Jam(props) {
     return time.toLocaleTimeString('en-GB', {hour: "2-digit", minute: "2-digit"})
 }
 
-const idFlight = [
-    {
-        id: "QZ", 
-        logo: QZ
-    }, 
-    {
-        id:"ID",
-        logo: ID
-    }, 
-    {
-        id: "GA",
-        logo: GA
-    }, 
-    {
-        id: "IU",
-        logo: IU
-    }, 
-    {
-        id: "QG",
-        logo: QG
-    },
-    {
-        id:"8B",
-        logo: TR
-    },
-    {
-        id:"JT",
-        logo: JT
-    },
-    {
-        id:"IW",
-        logo: IW
-    },
-    {
-        id:"SJ",
-        logo: SJ
-    },
-    {
-        id:"IP",
-        logo: IP
-    }
-]
+
 function logo(id) {
     for (const x of idFlight) {
         if (x.id == id) {
