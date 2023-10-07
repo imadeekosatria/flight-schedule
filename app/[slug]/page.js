@@ -107,10 +107,10 @@ export default async function Page(params) {
                             </form>
                         </div>
                     </div>
-                    <div className="flex flex-wrap gap-4 justify-center">
+                    <div className="flex flex-wrap gap-4 justify-center mt-9">
                         {data.data.map((flightstat) =>(
                             // console.log(aircraft)
-                            <Cardflight key={flightstat.flightno} props={flightstat}/>
+                            <Cardflight key={flightstat.flightno} props={[flightstat, {terminal : params.searchParams.terminal}]}/>
                         ))}
                     </div>
                 </div>

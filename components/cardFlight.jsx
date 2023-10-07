@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import QZ from "../public/images/aircraft/QZ.png"
 import ID from "../public/images/aircraft/ID.png"
@@ -49,11 +50,13 @@ const idFlight = [
     },
     {
         id: "QZ", 
-        logo: QZ
+        logo: QZ,
+        actual: "Air Asia"
     }, 
     {
         id:"ID",
-        logo: ID
+        logo: ID,
+        actual: "Batik Air",
     }, 
     {
         id: "GA",
@@ -77,7 +80,8 @@ const idFlight = [
     },
     {
         id:"IW",
-        logo: IW
+        logo: IW,
+        actual: "Wing Air",
     },
     {
         id:"SJ",
@@ -144,8 +148,8 @@ const idFlight = [
 
 function Status(stat) {
     const red = ['LATE ARRIVAL', 'GATE CLOSE', 'LAST CALL', 'BOARDING', 'DEPARTED', 'CHECK IN CLOSE']
-    const yellow = ['TO WAITING ROOM', 'CHECK IN OPEN']
-    const green = ['SCHEDULED']
+    const yellow = ['TO WAITING ROOM', 'CHECK IN OPEN', 'SECOND CALL']
+    const green = ['SCHEDULED', 'LANDED']
     // console.log(stat)
     if (red.includes(stat.stat)) {
         return (
@@ -156,9 +160,15 @@ function Status(stat) {
             <span className="col-span-4 px-2 py-1 bg-amber-300 rounded-lg text-slate-800 text-xs font-medium ml-auto">{stat.stat}</span>
         )
     }else if(green.includes(stat.stat)){
-        return (
-            <span className="col-span-4 px-2 py-1 bg-emerald-300 rounded-lg text-white text-xs font-medium ml-auto">{stat.stat}</span>
-        )
+        if(stat.stat === 'LANDED'){
+            return (
+                <span className="col-span-4 px-2 py-1 bg-emerald-300 rounded-lg text-white text-xs font-medium ml-auto animate-pulse">{stat.stat}</span>
+            )
+        }else{
+            return (
+                <span className="col-span-4 px-2 py-1 bg-emerald-300 rounded-lg text-white text-xs font-medium ml-auto">{stat.stat}</span>
+            )
+        }
     }else{
         return (
             <span className="col-span-4 px-2 py-1 bg-neutral-200 rounded-lg text-neutral-600 text-xs font-medium ml-auto">{stat.stat}</span>
@@ -203,49 +213,89 @@ function logo(id) {
     
 }
 
+function Speech(params, terminal) {
+    // console.log(params);
 
+    let op = ""
+    for (const x of idFlight) {
+        if (x.id == params.operator){
+            op = x.actual
+        }
+    }
+    let textId = ""
+    let textEn = ""
+    if(terminal === "arr"){
+        textId = `Perhatian perhatian! Pesawat udara, ${op} dengan nomor penerbangan ${params.flightno}, dari ${params.fromtolocation}, telah mendarat. Terimakasih.`
+        textEn = `Your attention please, ${op}, on flight number ${params.flightno} from ${params.fromtolocation} has just landed. Thank you`
+    }else{
+        textId = `Perhatian perhatian. Pesawat udara, ${op}, dengan nomor penerbangan, ${params.flightno}, tujuan, ${params.fromtolocation}, dipersilahkan naik ke pesawat udara melalui pintu nomor, ${params.gatenumber}. Terimakasih`
+        textEn = `Your attention please, ${op}, passengers, on flight number, ${params.flightno}, leaving for, ${params.fromtolocation}, please board to the aircraft immediately to gate number, ${params.gatenumber}. Thank you`
+    }
+    console.log(textId)
+    const synth = window.speechSynthesis
+    const voices = synth.getVoices()
+    // for (let i = 0; i < voices.length; i++) {
+    //     if (voices[i].lang ==="id-ID") {
+    //         console.log(voices[i])
+    //         console.log(i)
+    //     }
+    // }
+    const utternace = new SpeechSynthesisUtterance(textId)
+    // 159, 160 <== id-ID microsoft edge
+    // 11 <== chrome
+    utternace.voice = voices[11] //id-ID Chrome
+    utternace.lang= "id-ID"
+    utternace.pitch = 1
+    utternace.rate = 0.9
+    synth.speak(utternace)
+    // window.speechSynthesis.speak(utternace)
+}
 export default function Cardflight(props) {
-    // waktu(props)
+    // console.log(props.props[1].terminal)
+    function clickHandle() {
+        Speech(props.props[0], props.props[1].terminal)
+    }
     return(
         <>
-            <div className="w-80 md:w-96 relative bg-white rounded-2xl shadow mt-9 p-4">
-                <div className="flex justify-between">
+            <div className="w-80 md:w-96 relative bg-white rounded-2xl shadow p-4" onClick={clickHandle}>
+                <div className="flex justify-between mb-2">
                     <div className="flex gap-x-2 items-center">
-                        <Image src={logo(props.props.operator)} className="object-cover w-12 h-5" alt={props.props.operator}/>
-                        <span className="text-slate-800 text-xl font-semibold">{props.props.flightno}</span>    
+                        <Image src={logo(props.props[0].operator)} className="object-cover w-12 h-5" alt={props.props[0].operator}/>
+                        <span className="text-slate-800 text-xl font-semibold">{props.props[0].flightno}</span>    
                     </div>
                     <div className="flex items-center">
                         <box-icon type='solid' name='watch' color='#7088f1'></box-icon>
-                        <span className="text-indigo-400 text-xs font-medium">{waktu(props.props.schedule, props.props.estimate)}</span>
+                        {/* <span className="text-indigo-400 text-xs font-medium">{waktu(props.props[0].schedule, props.props[0].estimate)}</span> */}
+                        <span className="text-indigo-400 text-xs font-medium">{props.props[1].terminal === "arr" ? props.props[1].actual ? Jam(props.props[0].actual) : Jam(props.props[0].estimate) : Jam(props.props[0].schedule)}</span>
                     </div>
                 </div>
-                <div className="flex justify-between mt-2">
-                    <span className="text-slate-800 text-xs font-normal">{Jam(props.props.schedule)}</span>
-                    <span className="text-slate-800 text-xs font-normal">{props.props.estimate ? Jam(props.props.estimate) : "-"}</span>
-                </div>
+                {/* <div className="flex justify-between mt-2">
+                    <span className="text-slate-800 text-xs font-normal">{Jam(props.props[0].schedule)}</span>
+                    <span className="text-slate-800 text-xs font-normal">{props.props[0].estimate ? Jam(props.props[0].estimate) : "-"}</span>
+                </div> */}
                 <div className="grid sm:grid-cols-7 grid-cols-5">
                     <div className="flex flex-col text-left sm:col-span-2">
-                        <span className="text-slate-800 text-lg font-semibold">{props.props.airportcode}</span>
+                        <span className="text-slate-800 text-lg font-semibold">{props.props[1].terminal === "arr" ? props.props[0].fromto : props.props[0].airportcode}</span>
                     </div>
                     <Plane/>
                     <div className="flex flex-col text-right sm:col-span-2">
-                        <span className="text-slate-800 text-lg font-semibold">{props.props.fromto}</span>
+                        <span className="text-slate-800 text-lg font-semibold">{props.props[1].terminal === "arr" ? props.props[0].airportcode : props.props[0].fromto}</span>
                     </div>
                 </div>
                 <div className="flex justify-between mb-2">
-                    <span className="text-indigo-400 text-xs font-medium text-left max-sm:w-24">{props.props.airportloc}</span>
-                    <span className="text-indigo-400 text-xs font-medium text-right max-sm:w-24">{props.props.fromtolocation}</span>
+                    <span className="text-indigo-400 text-xs font-medium text-left max-sm:w-24">{props.props[0].airportloc}</span>
+                    <span className="text-indigo-400 text-xs font-medium text-right max-sm:w-24">{props.props[0].fromtolocation}</span>
                 </div>
                 <div className="grid grid-rows-2 w-10/12 ml-auto gap-y-2">
                     <div className="grid grid-cols-7 items-center gap-x-2">
                         <span className="col-span-2 text-left">Gate</span>
                         <span className="text-center">:</span>
-                        <span className="col-span-4 w-11 text-center px-2 py-1 bg-blue-500 rounded-3xl text-white text-xs font-medium ml-auto">{props.props.gatenumber? props.props.gatenumber : "-"}</span>
+                        <span className="col-span-4 w-11 text-center px-2 py-1 bg-blue-500 rounded-3xl text-white text-xs font-medium ml-auto">{props.props[0].gatenumber? props.props[0].gatenumber : props.props[0].beltnumber? props.props[0].beltnumber : "-"}</span>
                     </div>
                     <div className="grid grid-cols-7 items-center gap-x-2">
                         <span className="col-span-2 text-left">Status</span>
                         <span className="text-center">:</span>
-                        <Status stat={props.props.flightstat}/>
+                        <Status stat={props.props[0].flightstat}/>
                     </div>
                 </div>
             </div>
