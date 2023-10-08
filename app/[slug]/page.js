@@ -3,7 +3,7 @@ import { collection, getDocs, doc, where, query, limit} from "firebase/firestore
 // import { useState, useEffect} from "react"
 import { db } from "../firebase"
 import Image from "next/image"
-import bgBali from "../../public/images/pexels-aron-visuals-1643130.jpg"
+import bgBali from "../../public/images/bandara/DPS.jpg"
 import {
     Select,
     SelectContent,
@@ -64,12 +64,12 @@ export default async function Page(params) {
                     </div>
                     <div className="absolute top-0 w-full h-full">
                         <div className="w-80 h-full flex flex-col justify-center mx-auto">
-                            <h1 className="w-48 text-white text-2xl font-semibold">Ngurah Rai (DPS)</h1>
+                            <h1 className="w-80 text-white text-2xl font-semibold">{bandaradata.name + "("+bandaradata.code+")"}</h1>
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-col items-center">
-                    <div className="w-80 bg-white rounded-2xl mx-4 absolute top-36 p-4">
+                    <div className="w-80 bg-white rounded-2xl mx-4 absolute top-40 p-4">
                         <h2 className="text-slate-800 text-base font-semibold mb-4">Flight Menu</h2>
                         <form className="flex flex-col">
                             <Select name="origin" defaultValue={params.searchParams.origin? params.searchParams.origin: "domestic"}>
