@@ -11,7 +11,7 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-import Cardflight from "@/components/cardFlight"
+import ClientComponent from "./client-component"
 
 async function getData(slug, origin, terminal) {
     // console.log(origin)
@@ -43,7 +43,7 @@ async function getBandara(slug) {
     return data
 }
 export default async function Page(params) {
-    // console.log(params.searchParams.origin)
+    // console.log(params.searchParams)
     let bandaradata = {}
     let data = {}
     if(params.searchParams){
@@ -95,25 +95,7 @@ export default async function Page(params) {
                     </div>
                 
                 </div>
-                <div className="flex flex-col max-sm:items-center mt-52 ">
-                    <div className="flex flex-col gap-y-6 items-center">
-                        <span className="text-slate-800 text-lg text-center font-semibold">Upcoming Flights</span>
-                        <div className="relative">
-                            <form>
-                                <label htmlFor="flightSearch" className="absolute flex items-center h-10 ml-4 gap-2">
-                                    <box-icon name='search' color='#7088f1' ></box-icon>
-                                </label>
-                                <input type="text" name="flightSearch" className="w-80 h-10 bg-white rounded-3xl px-12 focus:outline-none placeholder:text-violet-300 placeholder:text-sm placeholder:font-medium" placeholder="Flight number/city"/>
-                            </form>
-                        </div>
-                    </div>
-                    <div className="flex flex-wrap gap-4 justify-center mt-9">
-                        {data.data.map((flightstat) =>(
-                            // console.log(aircraft)
-                            <Cardflight key={flightstat.flightno} props={[flightstat, {terminal : params.searchParams.terminal}]}/>
-                        ))}
-                    </div>
-                </div>
+                <ClientComponent params={[data.data, {terminal : params.searchParams.terminal, search: params.searchParams.flightSearch}]}/>
             </div>
         </>
     )
