@@ -12,7 +12,7 @@ import CardFlightHome from "@/components/cardFlightHome"
 import submit from "./action"
 import { useState, useEffect } from "react"
 import { collection, query, getDocs, querySnapshot, onSnapshot} from "firebase/firestore"
-import { db } from "./firebase"
+import {db} from "@/utils/firebase"
 
 
 export default function Home() {

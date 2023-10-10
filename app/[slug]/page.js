@@ -1,9 +1,9 @@
 
 import { collection, getDocs, doc, where, query, limit} from "firebase/firestore"
 // import { useState, useEffect} from "react"
-import { db } from "../firebase"
+import { db } from "@/utils/firebase"
 import Image from "next/image"
-import bgBali from "../../public/images/bandara/DPS.jpg"
+import bgBali from "@/public/images/bandara/DPS.jpg"
 import {
     Select,
     SelectContent,
