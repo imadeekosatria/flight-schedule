@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore} from "firebase/firestore";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
+import { getStorage, ref } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -13,6 +14,7 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGEBUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APPID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGEBUCKET,
 };
 
 
@@ -20,8 +22,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // if (process.env.VERCEL_ENV === 'development') {
-//   self.FIREBASE_APPCHECK_DEBUG_TOKEN = process.env.APP_CHECK_DEBUG_TOKEN_FROM_CI;
-// }
+  //   self.FIREBASE_APPCHECK_DEBUG_TOKEN = process.env.APP_CHECK_DEBUG_TOKEN_FROM_CI;
+  // }
 // const appCheck = initializeAppCheck(app, {
 //   provider: new ReCaptchaV3Provider('6Lf7CI0oAAAAABJpzYkrUlujGkg3NBA_bRA0oUlo'),
 
@@ -31,3 +33,5 @@ const app = initializeApp(firebaseConfig);
 // });
 
 export const db = getFirestore(app);
+
+export const storage = getStorage()

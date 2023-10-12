@@ -1,7 +1,8 @@
 
 import { collection, getDocs, doc, where, query, limit} from "firebase/firestore"
 // import { useState, useEffect} from "react"
-import { db } from "@/utils/firebase"
+import { getDownloadURL, ref } from "firebase/storage"
+import { db, storage } from "@/utils/firebase"
 import Image from "next/image"
 import bgBali from "../../public/images/bandara/DPS.jpg"
 import {
@@ -12,6 +13,7 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import ClientComponent from "./client-component"
+
 
 async function getData(slug, origin, terminal) {
     // console.log(origin)
@@ -44,23 +46,27 @@ async function getBandara(slug) {
 }
 export default async function Page(params) {
     // console.log(params.searchParams)
-    let bandaradata = {}
-    let data = {}
+    let bandaradata = await getBandara(params.params.slug)
+    let data
     if(params.searchParams){
-        bandaradata = await getBandara(params.params.slug)
         data = await getData(bandaradata.url, params.searchParams.origin, params.searchParams.terminal)
         // console.log(bandaradata.url)
     }else{
-        bandaradata = await getBandara(params.params.slug)
         data = await getData(bandaradata.url, "domestic", "dept")
     }
     // console.log(bandaradata.url)
+    const file = params.params.slug + ".jpg"
+    const storageRef = ref(storage, 'bandara')
+    const bg =  await getDownloadURL(ref(storageRef, file)).then((url)=>{
+        return url
+    })
+
     return (
         <> 
             <div className="w-full">
                 <div className="w-full relative">
-                    <div className="relative">
-                        <Image src={bgBali} className="w-full h-48" style={{objectFit: 'cover'}} alt="Bali"/>
+                    <div className="relative w-full h-48">
+                        <Image src={bg} fill={true} style={{objectFit: 'cover'}} alt="Bali"/>
                     </div>
                     <div className="absolute top-0 w-full h-full">
                         <div className="w-80 h-full flex flex-col justify-center mx-auto">

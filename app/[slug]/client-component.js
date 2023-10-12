@@ -6,7 +6,6 @@ import Cardflight from "@/components/cardFlight"
 export default function ClientComponent({params}) {
     const [query, setQuery] = useState('')
     const data = params[0]
-    // console.log(params[1].search)
 
     const inputHandler = (e) => {
         if (e.keyCode === 13) {
