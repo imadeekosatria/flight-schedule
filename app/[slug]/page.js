@@ -66,7 +66,7 @@ export default async function Page(params) {
             <div className="w-full">
                 <div className="w-full relative">
                     <div className="relative w-full h-48">
-                        <Image src={bg} fill={true} style={{objectFit: 'cover'}} alt="Bali"/>
+                        <Image src={bg} fill={true} priority={true} style={{objectFit: 'cover'}} alt={bandaradata.name}/>
                     </div>
                     <div className="absolute top-0 w-full h-full">
                         <div className="w-80 h-full flex flex-col justify-center mx-auto">

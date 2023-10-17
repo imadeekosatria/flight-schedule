@@ -45,7 +45,7 @@ export default function ClientComponent({params}) {
                         
                     }).map((flightstat) =>(
                         // console.log(aircraft)
-                        <Cardflight key={flightstat.flightno} props={[flightstat, {terminal : params[1]}]}/>
+                        <Cardflight key={flightstat.flightno} props={[flightstat, params[1]]}/>
                     ))}
                     
                 </div>

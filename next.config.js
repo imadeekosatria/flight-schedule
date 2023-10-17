@@ -11,6 +11,12 @@ const nextConfig = {
             port: '',
             pathname: '/v0/b/my-project-584ac.appspot.com/o/**',
           },
+          {
+            protocol: 'https',
+            hostname: 'juanda-airport.com',
+            port: '',
+            pathname: '/frontend/uploads/defaults/**'
+          }
         ],
     },
 }
