@@ -1,9 +1,10 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useState} from "react"
 import Cardflight from "@/components/cardFlight"
 
 
 export default function ClientComponent({params}) {
+    // console.log(params)
     const [query, setQuery] = useState('')
     const data = params[0]
 

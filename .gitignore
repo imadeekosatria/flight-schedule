@@ -40,4 +40,5 @@ firebaserc.json
 .vercel
 .env*.local
 
-/public/images/
+/public/images/aircraft
+/public/images/bandara

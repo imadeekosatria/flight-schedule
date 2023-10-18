@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image"
 import Plane from "./planeSvg"
+import image from "../public/images/image-loader.png"
 
 import { getDownloadURL, ref } from "firebase/storage"
 import { storage } from "@/utils/firebase"
@@ -107,14 +108,14 @@ function Speech(params, terminal) {
 
 
 export default function Cardflight(props) {
-    // console.log(props.props[1].terminal)
+    // console.log(props.props[1])
     function clickHandle() {
         Speech(props.props[0], props.props[1].terminal)
     }
 
     // const f = firebaseStorage(props.props[0].operator)
 
-    const [logo, setLogo] = useState("")
+    const [logo, setLogo] = useState(image)
 
     useEffect(()=>{
         const file = props.props[0].operator + ".png"
@@ -132,6 +133,7 @@ export default function Cardflight(props) {
         
     },[])
 
+    
     return(
         <>
             <div className="w-80 md:w-96 relative bg-white rounded-2xl shadow p-4" onClick={clickHandle}>
@@ -145,7 +147,7 @@ export default function Cardflight(props) {
                     <div className="flex items-center">
                         <box-icon type='solid' name='watch' color='#7088f1'></box-icon>
                         {/* <span className="text-indigo-400 text-xs font-medium">{waktu(props.props[0].schedule, props.props[0].estimate)}</span> */}
-                        <span className="text-indigo-400 text-xs font-medium">{props.props[1].terminal === "arr" ? props.props[1].actual ? Jam(props.props[0].actual) : Jam(props.props[0].estimate) : Jam(props.props[0].schedule)}</span>
+                        <span className="text-indigo-400 text-xs font-medium">{props.props[1].terminal === "arr" ? props.props[1].actual ? Jam(props.props[0].actual) : Jam(props.props[0].estimate) : Jam(props.props[0].schedule)} {props.props[1].time_zone}</span>
                     </div>
                 </div>
                 {/* <div className="flex justify-between mt-2">

@@ -101,7 +101,7 @@ export default async function Page(params) {
                     </div>
                 
                 </div>
-                <ClientComponent params={[data.data, {terminal : params.searchParams.terminal, search: params.searchParams.flightSearch}]}/>
+                <ClientComponent params={[data.data, {terminal : params.searchParams.terminal, search: params.searchParams.flightSearch, time_zone: bandaradata.time_zone}]}/>
             </div>
         </>
     )
