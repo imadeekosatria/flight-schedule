@@ -28,7 +28,7 @@ export default function SelectBandara({bandara}) {
     // },[])
     return (
         <div className="w-fit h-full">
-              <h1 className="text-slate-800 text-2xl font-semibold w-60 mb-4">Find your flight schedule</h1>
+              <h1 className="text-slate-50 text-2xl font-semibold w-60 mb-4">Find your flight schedule</h1>
               <form className="w-80 rounded bg-white p-4 flex flex-col gap-y-4" action={submit}>
                 <h2 className="text-slate-800 text-base font-semibold">Select Airport</h2>
                 <Select name="airport">
