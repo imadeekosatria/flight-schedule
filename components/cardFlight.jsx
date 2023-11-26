@@ -8,7 +8,7 @@ import { storage } from "@/utils/firebase"
 import { useState, useEffect } from "react"
 
 
-function Status(stat) {
+export function Status(stat) {
     const red = ['LATE ARRIVAL', 'GATE CLOSE', 'LAST CALL', 'BOARDING', 'DEPARTED', 'CHECK IN CLOSE']
     const yellow = ['TO WAITING ROOM', 'CHECK IN OPEN', 'SECOND CALL']
     const green = ['SCHEDULED', 'LANDED']
@@ -57,7 +57,7 @@ function waktu(schedule, estimate) {
     return "-"
 }
 
-function Jam(props) {
+export function Jam(props) {
     // const jam = new Date(props.props.schedule)
     // return jam.
     const time = new Date(props)
@@ -70,39 +70,34 @@ function Jam(props) {
 function Speech(params, terminal) {
     // console.log(params);
 
-    let op = ""
-    for (const x of idFlight) {
-        if (x.id == params.operator){
-            op = x.actual
-        }
-    }
-    let textId = ""
-    let textEn = ""
-    if(terminal === "arr"){
-        textId = `Perhatian perhatian! Pesawat udara, ${op} dengan nomor penerbangan ${params.flightno}, dari ${params.fromtolocation}, telah mendarat. Terimakasih.`
-        textEn = `Your attention please, ${op}, on flight number ${params.flightno} from ${params.fromtolocation} has just landed. Thank you`
-    }else{
-        textId = `Perhatian perhatian. Pesawat udara, ${op}, dengan nomor penerbangan, ${params.flightno}, tujuan, ${params.fromtolocation}, dipersilahkan naik ke pesawat udara melalui pintu nomor, ${params.gatenumber}. Terimakasih`
-        textEn = `Your attention please, ${op}, passengers, on flight number, ${params.flightno}, leaving for, ${params.fromtolocation}, please board to the aircraft immediately to gate number, ${params.gatenumber}. Thank you`
-    }
-    console.log(textId)
-    const synth = window.speechSynthesis
-    const voices = synth.getVoices()
-    // for (let i = 0; i < voices.length; i++) {
-    //     if (voices[i].lang ==="id-ID") {
-    //         console.log(voices[i])
-    //         console.log(i)
-    //     }
+    // if(terminal === "arr"){
+    //     textId = `Perhatian perhatian! Pesawat udara, ${op} dengan nomor penerbangan ${params.flightno}, dari ${params.fromtolocation}, telah mendarat. Terimakasih.`
+    //     textEn = `Your attention please, ${op}, on flight number ${params.flightno} from ${params.fromtolocation} has just landed. Thank you`
+    // }else{
+    //     textId = `Perhatian perhatian. Pesawat udara, ${op}, dengan nomor penerbangan, ${params.flightno}, tujuan, ${params.fromtolocation}, dipersilahkan naik ke pesawat udara melalui pintu nomor, ${params.gatenumber}. Terimakasih`
+    //     textEn = `Your attention please, ${op}, passengers, on flight number, ${params.flightno}, leaving for, ${params.fromtolocation}, please board to the aircraft immediately to gate number, ${params.gatenumber}. Thank you`
     // }
+    // console.log(textId)
+    const textId = `Perhatian perhatian. Pesawat udara, "Lion Air", dengan nomor penerbangan, "J, T, 0, 7, 4, 0", tujuan, "Jakarta", dipersilahkan naik ke pesawat udara melalui pintu nomor, "D.2". Terimakasih`
+    // textEn = `Your attention please, ${op}, on flight number ${params.flightno} from ${params.fromtolocation} has just landed. Thank you`
+    // const synth = window.speechSynthesis
+    // const voices = synth.getVoices()
+    console.log('cliked')
     const utternace = new SpeechSynthesisUtterance(textId)
     // 159, 160 <== id-ID microsoft edge
     // 11 <== chrome
-    utternace.voice = voices[11] //id-ID Chrome
+    // for (let i = 0; i < voices.length; i++) {
+    //     if (voices[i].lang ==="id-ID") {
+    //         // console.log(i)
+    //         // console.log(voices[i])
+    //     }
+    // }
+    // utternace.voice = voices[13] //id-ID Chrome
     utternace.lang= "id-ID"
     utternace.pitch = 1
     utternace.rate = 0.9
-    synth.speak(utternace)
-    // window.speechSynthesis.speak(utternace)
+    // synth.speak(utternace)
+    window.speechSynthesis.speak(utternace)
 }
 
 
@@ -136,7 +131,7 @@ export default function Cardflight(props) {
     
     return(
         <>
-            <div className="w-80 md:w-96 relative bg-white rounded-2xl shadow p-4" onClick={clickHandle}>
+            <div className="w-80 md:w-96 relative bg-white rounded-2xl shadow p-4">
                 <div className="flex justify-between mb-2">
                     <div className="flex gap-x-2 items-center">
                         <div className="object-cover w-12 h-5 relative">

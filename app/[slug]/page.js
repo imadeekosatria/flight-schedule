@@ -15,7 +15,7 @@ import {
 import ClientComponent from "./client-component"
 
 
-async function getData(slug, origin, terminal) {
+export async function getData(slug, origin, terminal) {
     // console.log(origin)
     const url = slug+terminal+"/"+origin
     // console.log(url)
