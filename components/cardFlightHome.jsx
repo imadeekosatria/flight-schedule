@@ -43,7 +43,7 @@ export default function CardFlightHome({ props }) {
   
   return (
     <>
-      <motion.div className="p-3 w-80 relative bg-white rounded-2xl shadow mb-8 " initial={{ y:100, opacity:0 }}
+      <motion.div className="p-3 w-80 relative bg-white rounded-2xl shadow drop-shadow-lg" initial={{ y:100, opacity:0 }}
       animate={{ y:0, opacity: 1}}
       transition={{
         duration: 0.8,

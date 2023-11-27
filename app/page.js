@@ -58,12 +58,12 @@ export default async function Home() {
             <SelectBandara bandara={d}/>
           </div>
         </div>
-        <div className="max-sm:w-80 w-full mt-40 lg:mt-32 mx-6 z-30">
-          <div className="flex justify-between sm:justify-evenly mb-4">
+        <div className="max-sm:w-80 w-full max-md:mt-40 mt-32 mx-6 z-30">
+          <div className="flex justify-evenly mb-4">
             <span className="text-slate-800 text-sm font-semibold">Upcoming flight</span>
             <Link href={"#"} className="flex items-center text-indigo-400 text-sm font-semibold">See All <box-icon name='chevron-right' color='#7088f1' ></box-icon></Link>
           </div>
-          <div className="flex gap-4 flex-wrap justify-center">
+          <div className="flex gap-4 md:gap-8 md:mx-8 flex-wrap justify-center">
             {bandaraFlight.map((bandara)=>{
               return <CardFlightHome key={bandara.flightno} props={bandara}/>
             })}
