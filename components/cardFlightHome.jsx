@@ -2,10 +2,11 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import image from "../public/images/image-loader.png";
-import airportImage from "@/public/images/bandara/DPS.jpg";
 import { getDownloadURL, ref } from "firebase/storage";
 import { Jam, Status } from "./cardFlight";
 import { storage } from "@/utils/firebase";
+import { motion } from "framer-motion"
+
 
 export default function CardFlightHome({ props }) {
   // console.log(props)
@@ -38,9 +39,17 @@ export default function CardFlightHome({ props }) {
       });
   }, []);
   // console.log(props.props)
+  
+  
   return (
     <>
-      <div className={`p-3 w-80 relative bg-white rounded-2xl shadow mb-8`}>
+      <motion.div className="p-3 w-80 relative bg-white rounded-2xl shadow mb-8 " initial={{ y:100, opacity:0 }}
+      animate={{ y:0, opacity: 1}}
+      transition={{
+        duration: 0.8,
+        delay: 1,
+        ease: [0, 0.71, 0.2, 1.01]
+      }}>
         <div className="flex justify-between">
           <h2 className="text-slate-800 text-xl font-semibold">{props.name}</h2>
           <div className="flex items-center">
@@ -95,7 +104,7 @@ export default function CardFlightHome({ props }) {
           </span>
           <Status stat={props.flightstat} />
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
