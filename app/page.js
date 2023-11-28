@@ -4,7 +4,7 @@ import Footer from "@/components/footer"
 import CardFlightHome from "@/components/cardFlightHome"
 import bgBandara from "@/public/images/bg-bandara.jpg"
 import SelectBandara from "@/components/selectBandara"
-import { collection, query, getDocs, querySnapshot, onSnapshot} from "firebase/firestore"
+import { collection, getDocs} from "firebase/firestore"
 import {db} from "@/utils/firebase"
 import Image from "next/image"
 
@@ -70,7 +70,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <Footer></Footer>
+      <Footer/>
     </div>
     </>
   )
