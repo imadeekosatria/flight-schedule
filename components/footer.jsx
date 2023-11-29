@@ -23,7 +23,7 @@ export default async function Footer() {
   // console.log(profile)
   return (
     <>
-      <div className="flex flex-col gap-y-4 w-screen h-fit">
+      <div className="flex flex-col gap-y-4 w-screen h-fit mt-8">
         <div className="w-screen relative">
           <div className="h-96 w-auto">
             <Image
@@ -32,11 +32,11 @@ export default async function Footer() {
               className="object-cover brightness-50"
             />
           </div>
-          <div className="absolute top-0 w-full grid grid-rows-4 h-full py-4">
-            <div className="text-center flex flex-col justify-center text-slate-100 text-lg">
+          <div className="absolute top-0 w-full grid grid-rows-6 h-full py-4">
+            <div className="text-center flex flex-col justify-center text-slate-100 text-lg row-span-3">
               <Dialog>
                 <DialogTrigger>
-                  <Avatar className="mx-auto">
+                  <Avatar className="mx-auto w-16 h-16">
                     <AvatarImage
                       src={profile}
                       className="object-cover brightness-75 hover:brightness-100"
@@ -118,7 +118,7 @@ export default async function Footer() {
                   </DialogHeader>
                 </DialogContent>
               </Dialog>
-              <h3 className="text-lg">Life is journey</h3>
+              <h3 className="text-2xl font-semibold">Life is journey</h3>
               <span className="text-base">
                 Enjoy the progress and be strong
               </span>
@@ -167,13 +167,11 @@ export default async function Footer() {
               </Link>
             </div>
             <div className="text-slate-300 text-center  flex flex-col gap-y-2 row-span-2 justify-center">
-              <span>Term of Use</span>
-              <span>Privacy Policy</span>
               <span>
                 All airline logos and data are derived from associated airport
                 data
               </span>
-              <span>&copy;2023</span>
+              <span>&copy; 2023</span>
             </div>
             <Link
               href={

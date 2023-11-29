@@ -13,6 +13,7 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import ClientComponent from "./client-component"
+import Footer from "@/components/footer"
 
 
 export async function getData(slug, origin, terminal) {
@@ -103,6 +104,7 @@ export default async function Page(params) {
                 </div>
                 <ClientComponent params={[data.data, {terminal : params.searchParams.terminal, search: params.searchParams.flightSearch, time_zone: bandaradata.time_zone}]}/>
             </div>
+            <Footer/>
         </>
     )
 }
