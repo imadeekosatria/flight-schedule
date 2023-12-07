@@ -69,6 +69,7 @@ export default async function Footer() {
                         <Link
                           href={"https://www.instagram.com/imadeekosatria/"}
                           target="_blank"
+                          aria-label="Go to my instagram"
                         >
                           <box-icon
                             name="instagram"
@@ -83,6 +84,7 @@ export default async function Footer() {
                             "https://www.linkedin.com/in/i-made-eko-satria-wiguna/"
                           }
                           target="_blank"
+                          aria-label="Go to my linkedin"
                         >
                           <box-icon
                             name="linkedin-square"
@@ -95,6 +97,7 @@ export default async function Footer() {
                         <Link
                           href={"https://github.com/imadeekosatria"}
                           target="_blank"
+                          aria-label="Go to my github"
                         >
                           <box-icon
                             name="github"
@@ -107,6 +110,7 @@ export default async function Footer() {
                         <Link
                           href={"mailto:imadeekosatria@gmail.com"}
                           target="_blank"
+                          aria-label="Mailto:imadeekosatria"
                         >
                           <box-icon
                             name="envelope"
