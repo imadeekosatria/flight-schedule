@@ -32,7 +32,7 @@ export default function SelectBandara({bandara}) {
               <form className="w-80 rounded-2xl bg-white p-4 flex flex-col gap-y-4 drop-shadow-2xl" action={submit}>
                 <h2 className="text-slate-800 text-base font-semibold">Select Airport</h2>
                 <Select name="airport">
-                  <SelectTrigger className="w-72">
+                  <SelectTrigger className="w-72" aria-label="select airport">
                     <SelectValue placeholder="From"/>
                   </SelectTrigger>
                   <SelectContent>

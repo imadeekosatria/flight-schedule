@@ -16,7 +16,7 @@ import Image from "next/image";
 
 export default async function Footer() {
   const profile = await getDownloadURL(
-    ref(ref(storage, "about"), "3 x 4.JPG")
+    ref(ref(storage, "about"), "3 x 4.jpg")
   ).then((url) => {
     return url;
   });
@@ -30,6 +30,7 @@ export default async function Footer() {
               src={bgFooter}
               fill={true}
               className="object-cover brightness-50"
+              alt="bg footer"
             />
           </div>
           <div className="absolute top-0 w-full grid grid-rows-6 h-full py-4">
@@ -40,6 +41,7 @@ export default async function Footer() {
                     <AvatarImage
                       src={profile}
                       className="object-cover brightness-75 hover:brightness-100"
+                      alt="Eko"
                     />
                     <AvatarFallback>Profile</AvatarFallback>
                   </Avatar>
@@ -168,7 +170,7 @@ export default async function Footer() {
             </div>
             <div className="text-slate-300 text-center  flex flex-col gap-y-2 row-span-2 justify-center">
               <span>
-                All airline logos and data are derived from associated airport
+                All airline logos and data are derived from associated airports
                 data
               </span>
               <span>&copy; 2023</span>
@@ -179,7 +181,7 @@ export default async function Footer() {
               }
               className="absolute px-5 py-3 bottom-0 left-0 text-slate-800 text-sm  backdrop-blur-sm rounded-md"
             >
-              Foto oleh Yurii Hlei
+              Picture by Yurii Hlei
             </Link>
           </div>
         </div>

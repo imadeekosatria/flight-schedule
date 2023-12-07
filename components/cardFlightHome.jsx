@@ -43,7 +43,7 @@ export default function CardFlightHome({ props }) {
   
   return (
     <>
-      <motion.div className="p-3 w-80 relative bg-white rounded-2xl shadow drop-shadow-lg" initial={{ y:100, opacity:0 }}
+      <motion.div className="p-3 w-80 relative bg-white rounded-2xl shadow drop-shadow-2xl" initial={{ y:100, opacity:0 }}
       animate={{ y:0, opacity: 1}}
       transition={{
         duration: 0.8,
@@ -59,8 +59,8 @@ export default function CardFlightHome({ props }) {
             </span>
           </div>
         </div>
-        <div className="object-cover w-2/5 h-10 relative">
-          <Image src={aircraft} fill={true} loading="lazy" alt="Logo" />
+        <div className="object-cover w-2/5 h-10 relative aspect-auto">
+          <Image src={aircraft} fill={true} loading="lazy" alt="Logo" className="aspect-auto"/>
         </div>
         <div className="grid grid-cols-5 mb-2">
           <div className="flex flex-col text-left">
