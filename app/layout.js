@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`bg-zinc-100 ${poppins.className}`}>
         {children}
-        <Script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"/>
+        <Script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" strategy="beforeInteractive"/>
       </body>
     </html>
   )

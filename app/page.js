@@ -78,5 +78,5 @@ export default async function Home() {
 
 export const metadata = {
   title: 'Flight Schedule',
-  description: 'Flight Schedule App made by I Made Eko Satria Wiguna. The schedule data is from Angkasa Pura 1 Airports. All aircraft logos are from Angkasa Pura 2 website'
+  description: 'Flight Schedule App made by I Made Eko Satria Wiguna. The schedule data is from Angkasa Pura 1 Airports. All airline logos are from Angkasa Pura 2 website'
 }
