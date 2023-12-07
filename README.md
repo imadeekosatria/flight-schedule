@@ -1,3 +1,15 @@
+Flight Schedule app is a web app that fetch data from Angkasa Pura I airport. This app is showing schedule for a day following actual data on airport.
+This app is my first personal project using Next.js. 
+Tech Stack in this website:
+- Next.js (Front-end & Back-end)
+- Firebase (Firestore & Firestorage)
+- Framer Motion (Animations)
+- Boxicons
+- Shadcn/UI (Components)
+  
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
