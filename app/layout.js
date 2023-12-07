@@ -1,4 +1,5 @@
 "use client"
+import Script from 'next/script'
 import './globals.css'
 import { Poppins } from 'next/font/google'
 
@@ -15,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`bg-zinc-100 ${poppins.className}`}>
         {children}
-        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+        <Script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"/>
       </body>
     </html>
   )
