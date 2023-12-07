@@ -1,4 +1,4 @@
-
+import { revalidatePath } from 'next/cache'
 import Link from "next/link"
 import Footer from "@/components/footer"
 import CardFlightHome from "@/components/cardFlightHome"
@@ -20,10 +20,10 @@ const getBandara = async ()=> getDocs(collection(db, "bandara"))
 export default async function Home() {
   const databandara = async(bandaraAPI)=>{
     const url = bandaraAPI+'dept/domestic'
-    const res = await fetch(url, { next: { revalidate: 300 } })
+    const res = await fetch(url)
     return res.json()
   }
-  
+  revalidatePath('/')
   const d = await getBandara()
   
   let bandaraFlight = []
