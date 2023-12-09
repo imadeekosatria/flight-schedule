@@ -1,0 +1,3 @@
+User-Agent: *
+Allow: /
+Sitemap: https://flight-schedule-imadeekosatria.vercel.app/sitemap.xml
