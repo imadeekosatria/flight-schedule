@@ -1,6 +1,7 @@
 import { getBandara } from "./page"
 export default async function sitemap() {
     const b = await getBandara()
+    const baseUrl = 'https://flight-schedule-three.vercel.app/'
     let bandaraFlight = [
         {
             url: 'https://flight-schedule-three.vercel.app/',
@@ -13,7 +14,7 @@ export default async function sitemap() {
         b.map( async bandara=> {
             // console.log(bandara.code)
             const url = {
-                url: bandara.url,
+                url: baseUrl+`${bandara.code}`,
                 lastModified: new Date(),
             }
             bandaraFlight.push(url)
