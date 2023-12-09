@@ -38,8 +38,6 @@ export default async function Home() {
   )
   
   // console.log(bandaraFlight)
-
-  
   
   return (
     <>

@@ -21,16 +21,18 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// if (process.env.VERCEL_ENV === 'development') {
-  //   self.FIREBASE_APPCHECK_DEBUG_TOKEN = process.env.APP_CHECK_DEBUG_TOKEN_FROM_CI;
-  // }
-// const appCheck = initializeAppCheck(app, {
-//   provider: new ReCaptchaV3Provider('6Lf7CI0oAAAAABJpzYkrUlujGkg3NBA_bRA0oUlo'),
 
-//   // Optional argument. If true, the SDK automatically refreshes App Check
-//   // tokens as needed.
-//   isTokenAutoRefreshEnabled: true
-// });
+if (typeof document !== "undefined") {
+  self.FIREBASE_APPCHECK_DEBUG_TOKEN = "17996a1f-5a1a-4120-8af7-f496bc88dfca";
+  
+  const appCheck = initializeAppCheck(app, {
+    provider: new ReCaptchaV3Provider('6Lf7CI0oAAAAABJpzYkrUlujGkg3NBA_bRA0oUlo'),
+  
+    // Optional argument. If true, the SDK automatically refreshes App Check
+    // tokens as needed.
+    isTokenAutoRefreshEnabled: true
+  });
+}
 
 export const db = getFirestore(app);
 
