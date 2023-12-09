@@ -10,7 +10,9 @@ const poppins = Poppins({
 
 export const metadata = {
   metadataBase: new URL('https://flight-schedule-three.vercel.app/'),
-  
+  verification: {
+    google: 'AD_RuT6RVK8Qf_hQxnW4hy_r_4mr8vtIgdvCAYw2Ocw',
+  },
 }
 
 export default function RootLayout({ children }) {
