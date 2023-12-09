@@ -2,6 +2,7 @@
 import Image from "next/image"
 import Plane from "./planeSvg"
 import image from "../public/images/image-loader.png"
+import { motion } from "framer-motion"
 
 import { getDownloadURL, ref } from "firebase/storage"
 import { storage } from "@/utils/firebase"
@@ -103,7 +104,7 @@ function Speech(params, terminal) {
 
 
 export default function Cardflight(props) {
-    // console.log(props.props[1])
+    // console.log(props)
     function clickHandle() {
         Speech(props.props[0], props.props[1].terminal)
     }
@@ -131,7 +132,13 @@ export default function Cardflight(props) {
     
     return(
         <>
-            <div className="w-80 md:w-96 relative bg-white rounded-2xl shadow-2xl p-4">
+            <motion.div className="w-80 md:w-96 relative bg-white rounded-2xl shadow-2xl p-4" initial={{ y:100, opacity:0 }}
+            animate={{ y:0, opacity: 1}}
+            transition={{
+                duration: 0.8,
+                delay: 0.25 * props.props[2],
+                ease: [0, 0.71, 0.2, 1.01]
+            }}>
                 <div className="flex justify-between mb-2">
                     <div className="flex gap-x-2 items-center">
                         <div className="object-cover w-12 h-5 relative">
@@ -174,7 +181,7 @@ export default function Cardflight(props) {
                         <Status stat={props.props[0].flightstat}/>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </>
     )
 }

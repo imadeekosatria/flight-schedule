@@ -12,7 +12,7 @@ export default function CardFlightHome({ props }) {
   // console.log(props)
   const [airport, setAirport] = useState(null);
   useEffect(()=>{
-    const file = props.airportcode+".jpg"
+    const file = props.bandara.airportcode+".jpg"
     const storageRef = ref(storage, 'bandara')
     getDownloadURL(ref(storageRef, file)).then((url)=>{
         setAirport(url)
@@ -22,7 +22,7 @@ export default function CardFlightHome({ props }) {
 
   const [aircraft, setAircraft] = useState(image);
   useEffect(() => {
-    const file = props.operator + ".png";
+    const file = props.bandara.operator + ".png";
     const storageRef = ref(storage, "aircraft");
     getDownloadURL(ref(storageRef, file))
       .then((url) => {
@@ -30,7 +30,7 @@ export default function CardFlightHome({ props }) {
         // console.log(url)
       })
       .catch((err) => {
-        const num = props.flightno;
+        const num = props.bandara.flightno;
         // console.log(num)
         const file = num.slice(0, 2) + ".png";
         getDownloadURL(ref(storageRef, file)).then((url) => {
@@ -47,15 +47,15 @@ export default function CardFlightHome({ props }) {
       animate={{ y:0, opacity: 1}}
       transition={{
         duration: 0.8,
-        delay: 1,
+        delay: 0.5 * props.i,
         ease: [0, 0.71, 0.2, 1.01]
       }}>
         <div className="flex justify-between">
-          <h2 className="text-slate-800 text-xl font-semibold">{props.name}</h2>
+          <h2 className="text-slate-800 text-xl font-semibold">{props.bandara.name}</h2>
           <div className="flex items-center">
             <box-icon type="solid" color="#7088f1" name="watch"></box-icon>
             <span className="text-indigo-400 text-xs font-medium">
-              {Jam(props.schedule)}
+              {Jam(props.bandara.schedule)}
             </span>
           </div>
         </div>
@@ -65,10 +65,10 @@ export default function CardFlightHome({ props }) {
         <div className="grid grid-cols-5 mb-2">
           <div className="flex flex-col text-left">
             <span className="text-slate-800 text-lg font-semibold">
-              {props.airportcode}
+              {props.bandara.airportcode}
             </span>
             <span className="text-indigo-400 text-xs font-medium">
-              {props.airportloc}
+              {props.bandara.airportloc}
             </span>
           </div>
           <div className="col-span-3">
@@ -91,10 +91,10 @@ export default function CardFlightHome({ props }) {
           </div>
           <div className="flex flex-col text-right">
             <span className="text-slate-800 text-lg font-semibold">
-              {props.fromto}
+              {props.bandara.fromto}
             </span>
             <span className="text-indigo-400 text-xs font-medium">
-              {props.fromtolocation}
+              {props.bandara.fromtolocation}
             </span>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function CardFlightHome({ props }) {
           <span className="mr-4 text-black text-xs font-medium">
             Status &ensp; :
           </span>
-          <Status stat={props.flightstat} />
+          <Status stat={props.bandara.flightstat} />
         </div>
       </motion.div>
     </>
