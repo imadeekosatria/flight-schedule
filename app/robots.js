@@ -4,6 +4,6 @@ export default function robots() {
         userAgent: '*',
         allow: '/',
       },
-      sitemap: 'https://acme.com/sitemap.xml',
+      sitemap: 'https://flight-schedule-imadeekosatria.vercel.app/sitemap.xml',
     }
   }
