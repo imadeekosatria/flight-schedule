@@ -4,7 +4,7 @@ export default async function sitemap() {
     const baseUrl = 'https://flight-schedule-three.vercel.app/'
     let bandaraFlight = [
         {
-            url: 'https://flight-schedule-three.vercel.app/',
+            url: baseUrl,
             lastModified: new Date(),
             priority: 1,
         }
