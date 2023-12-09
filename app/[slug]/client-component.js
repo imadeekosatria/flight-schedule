@@ -24,7 +24,7 @@ export default function ClientComponent({params}) {
                             <label htmlFor="flightSearch" className="absolute flex items-center h-10 ml-4 gap-2">
                                 <box-icon name='search' color='#7088f1' ></box-icon>
                             </label>
-                            <input type="text"  onChange={inputHandler} name="flightSearch" className="w-80 h-10 bg-white rounded-3xl px-12 focus:outline-none placeholder:text-violet-300 placeholder:text-sm placeholder:font-medium" placeholder="Flight number/city"/>
+                            <input type="text"  onChange={inputHandler} name="flightSearch" className="w-80 h-10 bg-white rounded-3xl px-12 shadow-2xl focus:outline-none placeholder:text-violet-300 placeholder:text-sm placeholder:font-medium" placeholder="Flight number/city"/>
                         </form>
                     </div>
                 </div>
