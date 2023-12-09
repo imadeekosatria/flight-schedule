@@ -131,7 +131,7 @@ export default function Cardflight(props) {
     
     return(
         <>
-            <div className="w-80 md:w-96 relative bg-white rounded-2xl shadow p-4">
+            <div className="w-80 md:w-96 relative bg-white rounded-2xl shadow-2xl p-4">
                 <div className="flex justify-between mb-2">
                     <div className="flex gap-x-2 items-center">
                         <div className="object-cover w-12 h-5 relative">
@@ -142,7 +142,7 @@ export default function Cardflight(props) {
                     <div className="flex items-center">
                         <box-icon type='solid' name='watch' color='#7088f1'></box-icon>
                         {/* <span className="text-indigo-400 text-xs font-medium">{waktu(props.props[0].schedule, props.props[0].estimate)}</span> */}
-                        <span className="text-indigo-400 text-xs font-medium">{props.props[1].terminal === "arr" ? props.props[1].actual ? Jam(props.props[0].actual) : Jam(props.props[0].estimate) : Jam(props.props[0].schedule)} {props.props[1].time_zone}</span>
+                        <span className="text-indigo-400 text-xs font-semibold">{props.props[1].terminal === "arr" ? props.props[1].actual ? Jam(props.props[0].actual) : Jam(props.props[0].estimate) : Jam(props.props[0].schedule)} {props.props[1].time_zone}</span>
                     </div>
                 </div>
                 {/* <div className="flex justify-between mt-2">
@@ -159,8 +159,8 @@ export default function Cardflight(props) {
                     </div>
                 </div>
                 <div className="flex justify-between mb-2">
-                    <span className="text-indigo-400 text-xs font-medium text-left max-sm:w-24">{props.props[1].terminal === "arr" ? props.props[0].fromtolocation : props.props[0].airportloc}</span>
-                    <span className="text-indigo-400 text-xs font-medium text-right max-sm:w-24">{props.props[1].terminal === "arr" ?props.props[0].airportloc:props.props[0].fromtolocation}</span>
+                    <span className="text-indigo-400 text-xs font-semibold text-left max-sm:w-24">{props.props[1].terminal === "arr" ? props.props[0].fromtolocation : props.props[0].airportloc}</span>
+                    <span className="text-indigo-400 text-xs font-semibold text-right max-sm:w-24">{props.props[1].terminal === "arr" ?props.props[0].airportloc:props.props[0].fromtolocation}</span>
                 </div>
                 <div className="grid grid-rows-2 w-10/12 ml-auto gap-y-2">
                     <div className="grid grid-cols-7 items-center gap-x-2">

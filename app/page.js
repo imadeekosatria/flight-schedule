@@ -8,7 +8,7 @@ import { collection, getDocs} from "firebase/firestore"
 import {db} from "@/utils/firebase"
 import Image from "next/image"
 
-const getBandara = async ()=> getDocs(collection(db, "bandara"))
+export const getBandara = async ()=> getDocs(collection(db, "bandara"))
                     .then((snapshot)=>{
                       let bandaras = []
                       snapshot.docs.forEach((doc)=>{
@@ -76,5 +76,8 @@ export default async function Home() {
 
 export const metadata = {
   title: 'Flight Schedule',
-  description: 'Flight Schedule App made by I Made Eko Satria Wiguna. The schedule data is from Angkasa Pura 1 Airports. All airline logos are from Angkasa Pura 2 website'
+  description: 'Flight Schedule App made by I Made Eko Satria Wiguna. The schedule data is from Angkasa Pura 1 Airports. All airline logos are from Angkasa Pura 2 website',
+  alternates:{
+    canonical: '/',
+  }
 }

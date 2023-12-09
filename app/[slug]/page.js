@@ -76,12 +76,12 @@ export default async function Page(params) {
                     </div>
                 </div>
                 <div className="flex flex-col items-center">
-                    <div className="w-80 bg-white rounded-2xl mx-4 absolute top-40 p-4">
+                    <div className="w-80 bg-white rounded-2xl mx-4 absolute top-40 p-4 shadow-2xl">
                         <h2 className="text-slate-800 text-base font-semibold mb-4">Flight Menu</h2>
                         <form className="flex flex-col">
                             <Select name="origin" defaultValue={params.searchParams.origin? params.searchParams.origin: "domestic"}>
-                                <SelectTrigger className="w-72 mb-4">
-                                    <SelectValue placeholder="Select a flight"/>
+                                <SelectTrigger className="w-72 mb-4" aria-label="Schedule from select">
+                                    <SelectValue placeholder="Select a flight schedule from"/>
                                 </SelectTrigger>
                                 <SelectContent>
                                 <SelectItem value="domestic">Domestic</SelectItem>
@@ -89,7 +89,7 @@ export default async function Page(params) {
                                 </SelectContent>
                             </Select>
                             <Select name="terminal" defaultValue={params.searchParams.terminal? params.searchParams.terminal: "dept"}>
-                                <SelectTrigger className="w-72 mb-4">
+                                <SelectTrigger className="w-72 mb-4" aria-label="Terminal select">
                                     <SelectValue placeholder="Select terminal"/>
                                 </SelectTrigger>
                                 <SelectContent>
@@ -97,7 +97,7 @@ export default async function Page(params) {
                                     <SelectItem value="dept">Departure</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <button type="submit" className="w-72 h-10 bg-violet-300 rounded-lg text-slate-800 text-base font-semibold">Search</button>
+                            <button type="submit" aria-label="Search Button" className="w-72 h-10 bg-violet-300 rounded-lg text-slate-800 text-base font-semibold">Search</button>
                         </form>
                     </div>
                 
@@ -108,3 +108,55 @@ export default async function Page(params) {
         </>
     )
 }
+
+export async function generateMetadata({ params}, parent) {
+    // read route params
+    const id = params
+    // fetch data
+    const bandara = await getBandara(id.slug)
+    
+   
+    // optionally access and extend (rather than replace) parent metadata
+    // const previousImages = (await parent).openGraph?.images || []
+   
+    return {
+      title: `${bandara.name} | ${bandara.origin}`,
+      description: `Flight schedule at ${bandara.name}. All airlines schedule is from airport API`,
+      keywords: ['Flight Schedule', 'Airport', `${bandara.name}`, `${bandara.origin}`, `${bandara.code}`],
+      creator: 'I Made Eko Satria Wiguna',
+      applicationName: 'Flight Schedule Next.js',
+      alternates:{
+        canonical: `/${bandara.code}`,
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: `${bandara.name} | ${bandara.origin}`,
+        description: `Flight schedule at ${bandara.name}. All airlines schedule is from airport API`,
+        siteId: '1467726470533754880',
+        creator: '@Eko_SatriaW',
+        creatorId: '1467726470533754880',
+        images: ['https://nextjs.org/og.png'],
+      },
+      openGraph: {
+        title: `${bandara.name} | ${bandara.origin}`,
+        description: `Flight schedule at ${bandara.name}. All airlines schedule is from airport API`,
+        url: `https://flight-schedule-three.vercel.app/${bandara.code}`,
+        siteName: 'Next.js',
+        images: [
+          {
+            url: 'https://nextjs.org/og.png',
+            width: 800,
+            height: 600,
+          },
+          {
+            url: 'https://nextjs.org/og-alt.png',
+            width: 1800,
+            height: 1600,
+            alt: 'My custom alt',
+          },
+        ],
+        locale: 'en_US',
+        type: 'website',
+      },
+    }
+  }
