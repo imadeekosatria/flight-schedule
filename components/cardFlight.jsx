@@ -142,7 +142,7 @@ export default function Cardflight(props) {
                 <div className="flex justify-between mb-2">
                     <div className="flex gap-x-2 items-center">
                         <div className="object-cover w-12 h-5 relative">
-                            <Image src={logo} fill={true} loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" alt={props.props[0].operator}/>
+                            <Image src={logo} loading="lazy" width={48} height={20} alt={props.props[0].operator}/>
                         </div>
                         <span className="text-slate-800 text-xl font-semibold">{props.props[0].flightno}</span>    
                     </div>

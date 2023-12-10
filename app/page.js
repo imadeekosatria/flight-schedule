@@ -9,6 +9,7 @@ import {db} from "@/utils/firebase"
 import Image from "next/image"
 import { Suspense } from 'react'
 import Loading from './[slug]/loading'
+import FeedBack from '@/components/feedback'
 
 export const getBandara = async ()=> getDocs(collection(db, "bandara"))
                     .then((snapshot)=>{
@@ -64,12 +65,9 @@ export default async function Home() {
             <Link href={"#"} className="flex items-center text-indigo-400 text-sm font-medium">See All <box-icon name='chevron-right' color='#7088f1' ></box-icon></Link>
           </div>
           <div className="flex gap-6 md:gap-8 md:mx-8 flex-wrap justify-center">
-            <Suspense fallback={<Loading/>}>
-
               {bandaraFlight.map((bandara, i)=>{
                 return <CardFlightHome key={bandara.flightno} props={{bandara, i}}/>
               })}
-            </Suspense>
           </div>
         </div>
       </div>

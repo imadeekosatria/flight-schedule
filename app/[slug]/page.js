@@ -14,13 +14,14 @@ import {
   } from "@/components/ui/select"
 import ClientComponent from "./client-component"
 import Footer from "@/components/footer"
+import ScrollUpButton from "@/components/scroollUp"
 
 
 export async function getData(slug, origin, terminal) {
     // console.log(origin)
     const url = slug+terminal+"/"+origin
     // console.log(url)
-    const res = await fetch(url, {cache: 'no-store'})
+    const res = await fetch(url, { next: { revalidate: 3600 } })
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
     
@@ -104,6 +105,7 @@ export default async function Page(params) {
                 </div>
                 <ClientComponent params={[data.data, {terminal : params.searchParams.terminal, search: params.searchParams.flightSearch, time_zone: bandaradata.time_zone}]}/>
             </div>
+            <ScrollUpButton/>
             <Footer/>
         </>
     )
