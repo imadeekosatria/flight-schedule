@@ -22,11 +22,11 @@ const ScrollUpButton = () => {
 
   useEffect(() => {
     // Attach the scroll event listener when the component mounts
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll)
 
     // Clean up the event listener when the component unmounts
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScroll)
     };
   }, []); // Empty dependency array ensures that the effect runs only once on mount
 

@@ -10,6 +10,7 @@ import Image from "next/image"
 import { Suspense } from 'react'
 import Loading from './[slug]/loading'
 import FeedBack from '@/components/feedback'
+import ScrollUpButton from '@/components/scroollUp'
 
 export const getBandara = async ()=> getDocs(collection(db, "bandara"))
                     .then((snapshot)=>{
@@ -35,7 +36,7 @@ export default async function Home() {
     d.map( async bandara=> {
       const data = await databandara(bandara.url)
       if (data.data[0] != null) {
-        bandaraFlight.push(data.data[0])
+        bandaraFlight.push({name: bandara.name, data: data.data[0]})
       }
     })
   )
@@ -66,11 +67,12 @@ export default async function Home() {
           </div>
           <div className="flex gap-6 md:gap-8 md:mx-8 flex-wrap justify-center">
               {bandaraFlight.map((bandara, i)=>{
-                return <CardFlightHome key={bandara.flightno} props={{bandara, i}}/>
+                return <CardFlightHome key={i} props={{bandara, i}}/>
               })}
           </div>
         </div>
       </div>
+      <ScrollUpButton/>
       <Footer/>
     </div>
     </>

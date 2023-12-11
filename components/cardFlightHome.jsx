@@ -12,7 +12,7 @@ export default function CardFlightHome({ props }) {
   // console.log(props)
   const [airport, setAirport] = useState(null);
   useEffect(()=>{
-    const file = props.bandara.airportcode+".jpg"
+    const file = props.bandara.data.airportcode+".jpg"
     const storageRef = ref(storage, 'bandara')
     getDownloadURL(ref(storageRef, file)).then((url)=>{
         setAirport(url)
@@ -22,7 +22,7 @@ export default function CardFlightHome({ props }) {
 
   const [aircraft, setAircraft] = useState(image);
   useEffect(() => {
-    const file = props.bandara.operator + ".png";
+    const file = props.bandara.data.operator + ".png";
     const storageRef = ref(storage, "aircraft");
     getDownloadURL(ref(storageRef, file))
       .then((url) => {
@@ -30,7 +30,7 @@ export default function CardFlightHome({ props }) {
         // console.log(url)
       })
       .catch((err) => {
-        const num = props.bandara.flightno;
+        const num = props.bandara.data.flightno;
         // console.log(num)
         const file = num.slice(0, 2) + ".png";
         getDownloadURL(ref(storageRef, file)).then((url) => {
@@ -50,25 +50,28 @@ export default function CardFlightHome({ props }) {
         delay: 0.5 * props.i,
         ease: [0, 0.71, 0.2, 1.01]
       }}>
-        <div className="flex justify-between">
-          <h2 className="text-slate-800 text-xl font-semibold">{props.bandara.name}</h2>
+        <div className="flex gap-x-2 justify-between">
+          <h2 className="text-slate-800  font-semibold truncate overflow-hidden">{props.bandara.name}</h2>
           <div className="flex items-center">
             <box-icon type="solid" color="#7088f1" name="watch"></box-icon>
             <span className="text-indigo-400 text-xs font-medium">
-              {Jam(props.bandara.schedule)}
+              {Jam(props.bandara.data.schedule)}
             </span>
           </div>
         </div>
-        <div className="object-cover w-2/5 h-10 relative aspect-auto">
-          <Image src={aircraft} fill={true} loading="lazy" alt="Logo" className="aspect-auto"/>
+        <div className="flex items-center justify-between">
+          <div className="object-cover w-2/5 h-10 relative aspect-auto">
+            <Image src={aircraft} fill={true} loading="lazy" alt="Logo" className="aspect-auto"/>
+          </div>
+          <span>{props.bandara.data.flightno}</span>
         </div>
         <div className="grid grid-cols-5 mb-2">
           <div className="flex flex-col text-left">
             <span className="text-slate-800 text-lg font-semibold">
-              {props.bandara.airportcode}
+              {props.bandara.data.airportcode}
             </span>
             <span className="text-indigo-400 text-xs font-medium">
-              {props.bandara.airportloc}
+              {props.bandara.data.airportloc}
             </span>
           </div>
           <div className="col-span-3">
@@ -91,10 +94,10 @@ export default function CardFlightHome({ props }) {
           </div>
           <div className="flex flex-col text-right">
             <span className="text-slate-800 text-lg font-semibold">
-              {props.bandara.fromto}
+              {props.bandara.data.fromto}
             </span>
             <span className="text-indigo-400 text-xs font-medium">
-              {props.bandara.fromtolocation}
+              {props.bandara.data.fromtolocation}
             </span>
           </div>
         </div>
@@ -102,7 +105,7 @@ export default function CardFlightHome({ props }) {
           <span className="mr-4 text-black text-xs font-medium">
             Status &ensp; :
           </span>
-          <Status stat={props.bandara.flightstat} />
+          <Status stat={props.bandara.data.flightstat} />
         </div>
       </motion.div>
     </>
