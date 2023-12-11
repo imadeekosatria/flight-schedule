@@ -1,16 +1,39 @@
-Flight Schedule app is a web app that fetch data from Angkasa Pura I airport. This app is showing schedule for a day following actual data on airport.
-This app is my first personal project using Next.js. 
-Tech Stack in this website:
-- Next.js (Front-end & Back-end)
-- Firebase (Firestore & Firestorage)
-- Framer Motion (Animations)
-- Boxicons
-- Shadcn/UI (Components)
-  
+Flight Schedule app is a web app that fetch data from Angkasa Pura I airport. This app is showing airline schedule for a day following actual data on airport.
+
+The website is build with Next.js with addition of Shadcn Ui for Ui component and Frammer motion for animation.
+
+This website is hosted on Vercel. The database, storage, and auth are manage by Firebase. 
+
+The website flow is begin by user on home page. You can see the ongoing flight at several airport. Choose the airport for the detail by select menu.
 
 
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+PS: Web is under development, you might find some bugs. 
+
+Next feature are on development:
+
+1. Announcers speaker using synthetic voice (built in browser)
+2. Feedback
+3. Admin panel 
+
+
+
+> Home Page
+
+![image.png](https://eraser.imgix.net/workspaces/5ypGkJqCdS9BDO1tUUFt/5H4XZbeVQHQH81QS9UH5MYYkYgo2/oVgkVQx_pbosUIs6wa7LX.png?ixlib=js-3.7.0 "image.png")
+
+
+
+> Airline schedules on selected airport 
+
+![image.png](https://eraser.imgix.net/workspaces/5ypGkJqCdS9BDO1tUUFt/5H4XZbeVQHQH81QS9UH5MYYkYgo2/PtcrIBVtwboABz7_flgcT.png?ixlib=js-3.7.0 "image.png")
+
+
+
+> Web Diagram
+
+![image.png](https://eraser.imgix.net/workspaces/5ypGkJqCdS9BDO1tUUFt/5H4XZbeVQHQH81QS9UH5MYYkYgo2/SP1hDVm3rgSEKIOFNdb5X.png?ixlib=js-3.7.0 "image.png")
+
 
 ## Getting Started
 
@@ -25,22 +48,3 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
