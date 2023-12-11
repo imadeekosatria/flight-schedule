@@ -132,7 +132,7 @@ export default function Cardflight(props) {
     
     return(
         <>
-            <motion.div className="w-80 md:w-96 relative bg-white rounded-2xl shadow-2xl p-4" initial={{ y:100, opacity:0 }}
+            <motion.div className="w-80 md:w-96 relative bg-white rounded-2xl shadow-2xl p-4 h-fit" initial={{ y:100, opacity:0 }}
             animate={{ y:0, opacity: 1}}
             transition={{
                 duration: 0.8,

@@ -8,7 +8,7 @@ The website flow is begin by user on home page. You can see the ongoing flight a
 
 
 
-PS: Web is under development, you might find some bugs. 
+PS: Web is still under development, you might find some bugs. 
 
 Next feature are on development:
 
