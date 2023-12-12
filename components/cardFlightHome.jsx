@@ -20,13 +20,13 @@ export default function CardFlightHome({ props }) {
 
   },[])
 
-  const [aircraft, setAircraft] = useState(image);
+  const [aircraft, setAircraft] = useState({url: image, class: 'animate-pulse'});
   useEffect(() => {
     const file = props.bandara.data.operator + ".png";
     const storageRef = ref(storage, "aircraft");
     getDownloadURL(ref(storageRef, file))
       .then((url) => {
-        setAircraft(url);
+        setAircraft({url: url});
         // console.log(url)
       })
       .catch((err) => {
@@ -34,7 +34,7 @@ export default function CardFlightHome({ props }) {
         // console.log(num)
         const file = num.slice(0, 2) + ".png";
         getDownloadURL(ref(storageRef, file)).then((url) => {
-          setAircraft(url);
+          setAircraft({url: url});
         });
       });
   }, []);
@@ -59,9 +59,9 @@ export default function CardFlightHome({ props }) {
             </span>
           </div>
         </div>
-        <div className="flex items-center justify-between">
-          <div className="object-cover w-2/5 h-10 relative aspect-auto">
-            <Image src={aircraft} fill={true} loading="lazy" alt="Logo" className="aspect-auto"/>
+        <div className="flex items-center justify-between my-2">
+          <div className="object-cover w-2/5 h-10 relative">
+            <Image src={aircraft.url} fill={true} sizes="100vw" loading="lazy" alt="Logo" className={`aspect-auto ${aircraft.class}`}/>
           </div>
           <span>{props.bandara.data.flightno}</span>
         </div>

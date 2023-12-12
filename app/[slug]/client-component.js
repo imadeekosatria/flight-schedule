@@ -4,7 +4,7 @@ import Cardflight from "@/components/cardFlight";
 
 const CardFlightList = memo(function CardFlightList({ data, query, params }) {
     return (
-      <div className="flex flex-wrap gap-4 justify-center my-9 md:py-4 md:h-[35rem] md:overflow-y-auto mx-4 ">
+      <div className="flex flex-wrap gap-4 justify-center my-9 md:py-4 mx-4 ">
         {data
           .filter((el) => {
             return query.toLowerCase() === ""
