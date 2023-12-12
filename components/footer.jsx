@@ -23,13 +23,13 @@ export default async function Footer() {
   // console.log(profile)
   return (
     <>
-      <div className="flex flex-col gap-y-4 w-screen h-fit mt-8 z-0">
+      <div className="flex flex-col gap-y-4 max-sm:w-screen h-fit mt-8 z-0">
         <div className="w-full relative">
           <div className="relative w-full h-96 aspect-video">
             <Image
               src={bgFooter}
               fill={true}
-              className="object-cover w-screen brightness-50"
+              className="object-cover max-sm:w-screen brightness-50"
               alt="bg footer"
             />
           </div>

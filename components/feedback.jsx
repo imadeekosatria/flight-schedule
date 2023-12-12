@@ -1,3 +1,4 @@
+"use client";
 import {
   Dialog,
   DialogContent,
@@ -7,14 +8,17 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
+import { useEffect, useState } from "react";
 
 export default function FeedBack() {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    setTimeout(setOpen(true), 3000);
+  });
   return (
     <>
       <Dialog>
-        <DialogTrigger>
-            <Button data-state="open">Open</Button>
-        </DialogTrigger>
+        <DialogTrigger>Open</DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Are you sure absolutely sure?</DialogTitle>
