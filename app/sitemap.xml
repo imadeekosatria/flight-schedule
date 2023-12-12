@@ -1,0 +1,27 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://flight-schedule-three.vercel.app/</loc>
+        <lastmod>2023-12-11T15:47:19.092Z</lastmod>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://flight-schedule-three.vercel.app/UPG</loc>
+        <lastmod>2023-12-11T15:47:19.092Z</lastmod>
+    </url>
+    <url>
+        <loc>https://flight-schedule-three.vercel.app/SUB</loc>
+        <lastmod>2023-12-11T15:47:19.092Z</lastmod>
+    </url>
+    <url>
+        <loc>https://flight-schedule-three.vercel.app/BPN</loc>
+        <lastmod>2023-12-11T15:47:19.092Z</lastmod>
+    </url>
+    <url>
+        <loc>https://flight-schedule-three.vercel.app/DPS</loc>
+        <lastmod>2023-12-11T15:47:19.092Z</lastmod>
+    </url>
+    <url>
+        <loc>https://flight-schedule-three.vercel.app/LOP</loc>
+        <lastmod>2023-12-11T15:47:19.092Z</lastmod>
+    </url>
+</urlset>
