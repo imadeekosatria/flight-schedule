@@ -71,7 +71,7 @@ export default async function Home() {
             </div>
           </div>
         </div>
-        {/* <FeedBack/> */}
+        <FeedBack/>
         <ScrollUpButton/>
         <Footer/>
       </div>
