@@ -15,6 +15,7 @@ import {
 import ClientComponent from "./client-component"
 import Footer from "@/components/footer"
 import ScrollUpButton from "@/components/scroollUp"
+import FeedBack from "@/components/feedback"
 
 
 export async function getData(slug, origin, terminal) {
@@ -106,6 +107,7 @@ export default async function Page(params) {
                 <ClientComponent params={[data.data, {terminal : params.searchParams.terminal, search: params.searchParams.flightSearch, time_zone: bandaradata.time_zone}]}/>
             </div>
             <ScrollUpButton/>
+            <FeedBack/>
             <Footer/>
         </>
     )

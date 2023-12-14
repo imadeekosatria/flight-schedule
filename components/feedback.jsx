@@ -5,7 +5,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "./ui/button"
@@ -15,16 +14,22 @@ import ReactStars from "react-rating-stars-component"
 import { doc, setDoc, collection} from "firebase/firestore"
 import { db } from '@/utils/firebase'
 
+
 export default function FeedBack() {
   const [open, setOpen] = useState(false)
   const [iswait, setIswait] = useState(false)
-  useEffect(() => {
-    setOpen(true);
-  }, [])
-
-  
-  // const [rating, setRating] = useState(null)
   const [feedback, setFeedback] = useState({rating: '', feedback:'', date: ''})
+  const [isfilled, setIsfilled] = useState(false)
+  
+  useEffect(() => {
+    const time = setTimeout(() =>{
+      setOpen(true)
+    },120000)
+
+    return () => {
+      clearTimeout(time)
+    }
+  }, [])
   
     
   const handleClick = async (e)=>{
@@ -39,6 +44,7 @@ export default function FeedBack() {
     } catch (error) {
       console.log(error)
     }
+    setIsfilled(true)
     // console.log(rating)
     
   }
