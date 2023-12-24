@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore} from "firebase/firestore";
 import { initializeAppCheck, ReCaptchaV3Provider } from "firebase/app-check";
 import { getStorage, ref } from "firebase/storage";
+import { getAnalytics } from "firebase/analytics"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,6 +16,7 @@ const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APPID,
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGEBUCKET,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENTID,
 };
 
 
@@ -35,5 +37,5 @@ const app = initializeApp(firebaseConfig);
 // }
 
 export const db = getFirestore(app);
-
+const analytics = getAnalytics(app)
 export const storage = getStorage()
