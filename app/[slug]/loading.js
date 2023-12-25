@@ -5,6 +5,7 @@ export default function Loading() {
     <>
       <div className="w-screen h-screen flex flex-col text-center justify-center items-center">
         <Animation/>
+        {/* <h1>Loading...</h1> */}
       </div>
     </>
   );

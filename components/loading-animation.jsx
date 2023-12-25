@@ -5,9 +5,8 @@ export default function Animation(){
     return (
         <Player
           autoplay
-          loop
           src={AniJson}
-          style={{ height: '90vh', width: '90vw' }}
+          style={{ height: '300px', width: '300px' }}
         >
         </Player>
     )
