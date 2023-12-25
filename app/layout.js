@@ -2,6 +2,8 @@ import Script from 'next/script'
 import './globals.css'
 import { Poppins } from 'next/font/google'
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Toaster } from "@/components/ui/toaster"
+
 const poppins = Poppins({
   subsets: ['latin'],
   display: 'swap',
@@ -20,6 +22,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className='scroll-smooth'>
       <body className={`bg-zinc-100 ${poppins.className}`}>
         {children}
+        <Toaster />
         <SpeedInsights/>
         <Script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" strategy="beforeInteractive"/>
       </body>

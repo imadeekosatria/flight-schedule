@@ -1,10 +1,7 @@
-
 import { collection, getDocs, doc, where, query, limit} from "firebase/firestore"
-// import { useState, useEffect} from "react"
 import { getDownloadURL, ref } from "firebase/storage"
 import { db, storage } from "@/utils/firebase"
 import Image from "next/image"
-import bgBali from "../../public/images/bandara/DPS.jpg"
 import {
     Select,
     SelectContent,
@@ -16,6 +13,7 @@ import ClientComponent from "./client-component"
 import Footer from "@/components/footer"
 import ScrollUpButton from "@/components/scroollUp"
 import FeedBack from "@/components/feedback"
+import Animation from "@/components/loading-animation"
 
 
 export async function getData(slug, origin, terminal) {
@@ -104,6 +102,7 @@ export default async function Page(params) {
                     </div>
                 
                 </div>
+                {/* <Animation/> */}
                 <ClientComponent params={[data.data, {terminal : params.searchParams.terminal, search: params.searchParams.flightSearch, time_zone: bandaradata.time_zone}]}/>
             </div>
             <ScrollUpButton/>
